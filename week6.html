@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Colorful Journey by Mohid</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    background: #f0f0f0;
+  }
+
+  #story-container {
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .panel {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    color: #fff;
+    padding: 40px;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.8s ease-in-out;
+  }
+
+  .panel h1, .panel p {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+  }
+
+  .panel.active h1, .panel.active p {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  h1 {
+    font-family: 'Lora', serif;
+    margin: 0 0 30px;
+    font-size: 4em;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  }
+
+  p {
+    font-size: 1.5em;
+    line-height: 1.6;
+    max-width: 700px;
+    margin: auto;
+  }
+
+  .panel-1 { background-color: #A2CCB6; }
+  .panel-2 { background-color: #FBE7C6; }
+  .panel-3 { background-color: #FFABAB; }
+  .panel-4 { background-color: #FFDA77; }
+  .panel-5 { background-color: #A0C4FF; }
+
+  .panel h1 {
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out, color 0.8s;
+  }
+
+  .panel p {
+    transition: opacity 0.8s ease-in-out 0.2s, transform 0.8s ease-in-out 0.2s, color 0.8s;
+  }
+
+  .panel h1, .panel p {
+    transform: scale(0.9);
+  }
+
+  .panel.active h1, .panel.active p {
+    transform: scale(1);
+  }
+</style>
+</head>
+<body>
+
+<div id="story-container">
+  <section class="panel panel-1">
+    <h1>The Journey Begins</h1>
+    <p>Like the fresh green leaves of spring, our story starts with a burst of life and energy...</p>
+  </section>
+  <section class="panel panel-2">
+    <h1>A Hero Emerges</h1>
+    <p>In the warm glow of dawn, a hero takes the first brave step into the unknown...</p>
+  </section>
+  <section class="panel panel-3">
+    <h1>The Challenge</h1>
+    <p>Facing the fiery trials, our hero stands resilient against the red blaze of adversity...</p>
+  </section>
+  <section class="panel panel-4">
+    <h1>The Triumph</h1>
+    <p>Amidst golden cheers of victory, the hero shines brightly, basking in the moment of success...</p>
+  </section>
+  <section class="panel panel-5">
+    <h1>A New Beginning</h1>
+    <p>As the calm blue sky heralds peace, our journey transitions to the promise of a new day...</p>
+  </section>
+</div>
+
+<script>
+  const panels = document.querySelectorAll('.panel');
+
+  function checkPanelInView(panel) {
+    const panelTop = panel.getBoundingClientRect().top;
+    const panelBottom = panel.getBoundingClientRect().bottom;
+    return (panelTop >= 0 && panelTop < window.innerHeight) || 
+           (panelBottom > 0 && panelBottom < window.innerHeight);
+  }
+
+  function updatePanelsOnScroll() {
+    panels.forEach((panel) => {
+      if (checkPanelInView(panel)) {
+        panel.classList.add('active');
+      } else {
+        panel.classList.remove('active');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', updatePanelsOnScroll);
+
+  updatePanelsOnScroll();
+</script>
+</body>
+</html>
